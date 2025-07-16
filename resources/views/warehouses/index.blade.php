@@ -69,15 +69,20 @@
                         </table>
                         @if ($warehouses->total() > 0)
                             <div class="d-flex justify-content-between align-items-center mt-3 flex-column flex-md-row">
-                                <div>
-                                    <small class="text-muted">
-                                        Showing {{ $warehouses->firstItem() }} to {{ $warehouses->lastItem() }}
-                                        of {{ $warehouses->total() }} results
-                                    </small>
-                                </div>
-                                <div>
-                                    {{ $warehouses->links('pagination::bootstrap-5') }}
-                                </div>
+                                @if ($warehouses->lastPage() === 1)
+                                    <div>
+                                        <small class="text-muted">
+                                            Showing {{ $warehouses->firstItem() }} to {{ $warehouses->lastItem() }}
+                                            of {{ $warehouses->total() }} results
+                                        </small>
+                                    </div>
+                                @endif
+
+                                @if ($warehouses->lastPage() > 1)
+                                    <div>
+                                        {{ $warehouses->links('pagination::bootstrap-5') }}
+                                    </div>
+                                @endif
                             </div>
                         @endif
                     </div>
