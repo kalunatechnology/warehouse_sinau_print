@@ -93,7 +93,70 @@
                         </a>
                     </li>
 
-                    
+                    <!-- Sistem Gudang -->
+                    <li class="menu-item {{ request()->is('warehouses*') ? 'open' : '' }}">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bx-package"></i>
+                        <div data-i18n="Sistem Gudang">Sistem Gudang</div>
+                    </a>
+                    <ul class="menu-sub">
+                        <!-- Master Gudang -->
+                        <li class="menu-item {{ request()->is('warehouses*') ? 'active' : '' }}">
+                        <a href="{{ route('warehouses.index') }}" class="menu-link">
+                            <div data-i18n="Master Gudang">Master Gudang</div>
+                        </a>
+                        </li>
+
+                        <!-- Master Bahan -->
+                        <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <div data-i18n="Master Bahan">Master Bahan</div>
+                        </a>
+                        </li>
+
+                        <!-- Satuan Stok -->
+                        <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <div data-i18n="Satuan Stok">Satuan Stok</div>
+                        </a>
+                        </li>
+
+                        <!-- Satuan Stok Detail -->
+                        <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <div data-i18n="Satuan Stok Detail">Satuan Stok Detail</div>
+                        </a>
+                        </li>
+
+                        <!-- Belanja Bahan -->
+                        <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <div data-i18n="Belanja Bahan">Belanja Bahan</div>
+                        </a>
+                        </li>
+
+                        <!-- Daftar Stok -->
+                        <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <div data-i18n="Daftar Stok">Daftar Stok</div>
+                        </a>
+                        </li>
+
+                        <!-- Stok Minimal -->
+                        <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <div data-i18n="Stok Minimal">Stok Minimal</div>
+                        </a>
+                        </li>
+
+                        <!-- Transaksi Stok -->
+                        <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <div data-i18n="Transaksi Stok">Transaksi Stok</div>
+                        </a>
+                        </li>
+                    </ul>
+                    </li>
                 </ul>
 
             </aside>
