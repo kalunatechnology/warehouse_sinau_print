@@ -41,17 +41,38 @@
                                         <td>{{ $units->firstItem() + $index }}</td>
                                         <td>{{ $unit->u_name }}</td>
                                         <td>
-                                            <button class="btn btn-sm btn-primary"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#editUnitModal{{ $unit->id }}">
-                                                Edit
+                                        {{-- Desktop view --}}
+                                        <div class="d-none d-md-flex gap-1">
+                                            <button
+                                            class="btn btn-sm btn-outline-primary"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#editUnitModal{{ $unit->id }}">
+                                            <i class="bx bx-edit-alt me-1"></i> Edit
                                             </button>
-                                            <button class="btn btn-sm btn-danger"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#deleteUnitModal{{ $unit->id }}">
-                                                Hapus
+                                            <button
+                                            class="btn btn-sm btn-outline-danger"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#deleteUnitModal{{ $unit->id }}">
+                                            <i class="bx bx-trash me-1"></i> Delete
                                             </button>
+                                        </div>
+
+                                        {{-- Mobile view (dropdown) --}}
+                                        <div class="dropdown d-md-none">
+                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                            <button class="dropdown-item text-primary" data-bs-toggle="modal" data-bs-target="#editUnitModal{{ $unit->id }}">
+                                                <i class="bx bx-edit-alt me-1"></i> Edit
+                                            </button>
+                                            <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#deleteUnitModal{{ $unit->id }}">
+                                                <i class="bx bx-trash me-1"></i> Delete
+                                            </button>
+                                            </div>
+                                        </div>
                                         </td>
+
                                     </tr>
                                 @empty
                                     <tr>
