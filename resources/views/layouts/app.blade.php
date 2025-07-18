@@ -94,7 +94,7 @@
                     </li>
 
                     <!-- Sistem Gudang -->
-                    <li class="menu-item {{ request()->is('warehouses*') || request()->is('units*') ? 'open' : '' }}">
+                    <li class="menu-item {{ request()->is('warehouses*') || request()->is('materials*') || request()->is('units*') ? 'open' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bx-package"></i>
                         <div data-i18n="Sistem Gudang">Sistem Gudang</div>
@@ -109,7 +109,7 @@
 
                         <!-- Master Bahan -->
                         <li class="menu-item">
-                        <a href="#" class="menu-link">
+                        <a href="{{ route('materials.index') }}" class="menu-link">
                             <div data-i18n="Master Bahan">Master Bahan</div>
                         </a>
                         </li>

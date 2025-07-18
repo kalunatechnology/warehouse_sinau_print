@@ -182,4 +182,20 @@
 </div>
 @endforeach
 
+@if ($errors->any())
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        Notiflix.Notify.failure("{{ $errors->first() }}");
+    });
+</script>
+@endif
+
+@if(session('success'))
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        Notiflix.Notify.success("{{ session('success') }}");
+    });
+</script>
+@endif
+
 @endsection

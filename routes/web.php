@@ -19,4 +19,5 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::middleware('auth')->group(function () {
     Route::resource('warehouses', \App\Http\Controllers\WarehouseController::class);
     Route::resource('units', \App\Http\Controllers\UnitController::class);
+    Route::resource('materials', \App\Http\Controllers\MaterialController::class);
 });
