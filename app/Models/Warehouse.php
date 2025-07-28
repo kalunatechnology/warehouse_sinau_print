@@ -12,4 +12,9 @@ class Warehouse extends Model
     protected $fillable = [
         'branch_name', 'wh_type', 'wh_name'
     ];
+
+    public function transaction()
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }

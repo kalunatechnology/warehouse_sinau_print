@@ -15,4 +15,9 @@ class Material extends Model
         'm_code', 'm_name', 'm_price', 'm_type', 'm_supplier',
         'unit', 'unit_detail', 'conversion', 'm_limit', 'waste'
     ];
+
+    public function transaction()
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }
