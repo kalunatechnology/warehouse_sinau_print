@@ -21,4 +21,5 @@ Route::middleware('auth')->group(function () {
     Route::resource('units', \App\Http\Controllers\UnitController::class);
     Route::resource('materials', \App\Http\Controllers\MaterialController::class);
     Route::get('stocks', [\App\Http\Controllers\StockController::class, 'index'])->name('stocks.index');
+    Route::get('stocks/minimum', [\App\Http\Controllers\StockController::class, 'minimumStock'])->name('stocks.minimum');
 });

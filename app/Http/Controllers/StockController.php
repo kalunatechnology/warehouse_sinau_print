@@ -58,4 +58,44 @@ class StockController extends Controller
 
         return view('stocks.index', compact('stocks', 'search'));
     }
+
+    public function minimumStock(Request $request)
+    {
+        $search = $request->input('search');
+
+        $stocksQuery = DB::table('transactions')
+            ->join('warehouses', 'transactions.wh_id', '=', 'warehouses.id')
+            ->join('materials', 'transactions.m_id', '=', 'materials.id')
+            ->select(
+                'warehouses.id as warehouse_id',
+                'warehouses.wh_name',
+                'materials.id as material_id',
+                'materials.m_name',
+                'materials.m_limit',
+                DB::raw('SUM(CASE WHEN transactions.type = 1 THEN transactions.qty ELSE 0 END) - SUM(CASE WHEN transactions.type = 0 THEN transactions.qty ELSE 0 END) as stock')
+            )
+            ->whereNull('warehouses.deleted_at')
+            ->whereNull('materials.deleted_at')
+            ->groupBy(
+                'warehouses.id',
+                'warehouses.wh_name',
+                'materials.id',
+                'materials.m_name',
+                'materials.m_limit'
+            );
+
+        if ($search) {
+            $stocksQuery->where(function($query) use ($search) {
+                $query->where('warehouses.wh_name', 'like', "%{$search}%")
+                      ->orWhere('materials.m_name', 'like', "%{$search}%");
+            });
+        }
+
+        $stocks = $stocksQuery
+            ->orderBy('warehouses.wh_name')
+            ->orderBy('materials.m_name')
+            ->paginate(10);
+
+        return view('stocks.minimum', compact('stocks', 'search'));
+    }
 }

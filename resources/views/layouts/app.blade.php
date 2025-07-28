@@ -136,15 +136,15 @@
                         </li>
 
                         <!-- Daftar Stok -->
-                        <li class="menu-item {{ request()->is('stocks*') ? 'active' : '' }}">
+                        <li class="menu-item {{ request()->is('stocks') ? 'active' : '' }}">
                         <a href="{{ route('stocks.index') }}" class="menu-link">
                             <div data-i18n="Daftar Stok">Daftar Stok</div>
                         </a>
                         </li>
 
                         <!-- Stok Minimal -->
-                        <li class="menu-item">
-                        <a href="#" class="menu-link">
+                        <li class="menu-item {{ request()->is('stocks/minimum*') ? 'active' : '' }}">
+                        <a href="{{ route('stocks.minimum') }}" class="menu-link">
                             <div data-i18n="Stok Minimal">Stok Minimal</div>
                         </a>
                         </li>
