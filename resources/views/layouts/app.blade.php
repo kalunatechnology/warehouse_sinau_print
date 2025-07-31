@@ -108,7 +108,7 @@
                         </li>
 
                         <!-- Master Bahan -->
-                        <li class="menu-item">
+                        <li class="menu-item {{ request()->is('materials*') ? 'active' : '' }}">
                         <a href="{{ route('materials.index') }}" class="menu-link">
                             <div data-i18n="Master Bahan">Master Bahan</div>
                         </a>
@@ -122,8 +122,8 @@
                         </li>
 
                         <!-- Satuan Stok Detail -->
-                        <li class="menu-item">
-                        <a href="#" class="menu-link">
+                        <li class="menu-item {{ request()->is('purchasing*') ? 'active' : '' }}">
+                        <a href="{{ route('purchasing.index') }}" class="menu-link">
                             <div data-i18n="Satuan Stok Detail">Satuan Stok Detail</div>
                         </a>
                         </li>
