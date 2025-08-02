@@ -32,6 +32,7 @@ class StockController extends Controller
                 DB::raw('SUM(CASE WHEN transactions.type = 0 THEN transactions.qty ELSE 0 END) as stock_out'),
                 DB::raw('SUM(CASE WHEN transactions.type = 1 THEN transactions.qty ELSE 0 END) - SUM(CASE WHEN transactions.type = 0 THEN transactions.qty ELSE 0 END) as stock')
             )
+            ->whereNull('transactions.deleted_at')
             ->whereNull('warehouses.deleted_at')
             ->whereNull('materials.deleted_at')
             ->groupBy(
@@ -74,6 +75,7 @@ class StockController extends Controller
                 'materials.m_limit',
                 DB::raw('SUM(CASE WHEN transactions.type = 1 THEN transactions.qty ELSE 0 END) - SUM(CASE WHEN transactions.type = 0 THEN transactions.qty ELSE 0 END) as stock')
             )
+            ->whereNull('transactions.deleted_at')
             ->whereNull('warehouses.deleted_at')
             ->whereNull('materials.deleted_at')
             ->groupBy(

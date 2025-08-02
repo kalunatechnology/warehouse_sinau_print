@@ -155,6 +155,27 @@
                             <div data-i18n="Transaksi Stok">Transaksi Stok</div>
                         </a>
                         </li>
+
+                        <!-- Master Mesin -->
+                        <li class="menu-item {{ request()->is('machines*') ? 'active' : '' }}">
+                        <a href="{{ route('machines.index') }}" class="menu-link">
+                            <div data-i18n="Master Mesin">Master Mesin</div>
+                        </a>
+                        </li>
+                        
+                        <!-- Counter Mesin -->
+                        <li class="menu-item {{ request()->is('machine-counters*') ? 'active' : '' }}">
+                        <a href="{{ route('machine-counters.index') }}" class="menu-link">
+                            <div data-i18n="Counter Mesin">Counter Mesin</div>
+                        </a>
+                        </li>
+                        
+                        <!-- Log Counter Mesin -->
+                        <li class="menu-item {{ request()->is('machine-counter-logs*') ? 'active' : '' }}">
+                        <a href="{{ route('machine-counter-logs.index') }}" class="menu-link">
+                            <div data-i18n="Log Counter Mesin">Log Counter Mesin</div>
+                        </a>
+                        </li>
                     </ul>
                     </li>
                 </ul>
