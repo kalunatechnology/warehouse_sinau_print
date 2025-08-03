@@ -303,7 +303,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 
     {{-- Chart.js (lokal) --}}
-    <script src="{{ asset('npm/chartjs/chart.js') }}?v={{ $version }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
     @yield('script')

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MachineController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MachineCounterController;
 use App\Http\Controllers\MachineCounterLogController;
 
@@ -18,7 +19,8 @@ use App\Http\Controllers\MachineCounterLogController;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 Route::middleware('auth')->group(function () {
     Route::resource('warehouses', \App\Http\Controllers\WarehouseController::class);
     Route::resource('units', \App\Http\Controllers\UnitController::class);
