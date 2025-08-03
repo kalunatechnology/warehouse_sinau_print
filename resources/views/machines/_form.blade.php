@@ -3,6 +3,21 @@
 @endphp
 
 <div class="mb-3">
+  <label for="wh_id" class="form-label">Gudang</label>
+  <select name="wh_id" id="wh_id"
+          class="form-select @error('wh_id') is-invalid @enderror" required>
+    <option value="">-- Pilih Gudang --</option>
+    @foreach($warehouses as $wh)
+      <option value="{{ $wh->id }}"
+        {{ (int) old('wh_id', $m->wh_id ?? '') === $wh->id ? 'selected' : '' }}>
+        {{ $wh->wh_name }} ({{ $wh->branch_name }})
+      </option>
+    @endforeach
+  </select>
+  @error('wh_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
+</div>
+
+<div class="mb-3">
   <label for="code" class="form-label">Kode Mesin</label>
   <input type="text" name="code" id="code"
          class="form-control @error('code') is-invalid @enderror"

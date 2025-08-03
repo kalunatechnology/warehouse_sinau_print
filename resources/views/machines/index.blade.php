@@ -34,6 +34,7 @@
               <thead class="table-light">
                 <tr>
                   <th>No</th>
+                  <th>Gudang</th>
                   <th>Kode</th>
                   <th>Nama</th>
                   <th>Tipe</th>
@@ -46,6 +47,9 @@
                 @forelse($machines as $i => $machine)
                   <tr @if($machine->trashed()) class="table-secondary" @endif>
                     <td>{{ $machines->firstItem() + $i }}</td>
+                    <td>
+                      {{ $machine->warehouse->wh_name ?? '-' }}
+                    </td>
                     <td>{{ $machine->code }}</td>
                     <td>{{ $machine->name }}</td>
                     <td>{{ $machine->type }}</td>
@@ -139,7 +143,10 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           </div>
           <div class="modal-body">
-            @include('machines._form', ['machine' => null])
+            @include('machines._form', [
+              'machine'    => null,
+              'warehouses' => $warehouses
+            ])
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
@@ -161,7 +168,10 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-              @include('machines._form', ['machine' => $machine])
+              @include('machines._form', [
+                'machine'    => $machine,
+                'warehouses' => $warehouses
+              ])
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>

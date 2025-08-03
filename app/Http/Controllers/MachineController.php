@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Machine;
+use App\Models\Warehouse;
 use Illuminate\Http\Request;
 
 class MachineController extends Controller
@@ -18,13 +19,17 @@ class MachineController extends Controller
                       ->orWhere('name',      'like', "%{$search}%")
                       ->orWhere('type',      'like', "%{$search}%")
                       ->orWhere('location',  'like', "%{$search}%")
-                      ->orWhere('status',    'like', "%{$search}%");
+                      ->orWhere('status',    'like', "%{$search}%")
+                      ->orWhereHas('warehouse', fn($q2) =>
+                       $q2->where('wh_name','like',"%{$search}%"));
             })
             ->latest()
             ->paginate(10)
             ->withQueryString();
 
-        return view('machines.index', compact('machines', 'search'));
+        $warehouses = Warehouse::orderBy('wh_name')->get();
+
+        return view('machines.index', compact('machines', 'warehouses', 'search'));
     }
 
     public function create()
@@ -35,6 +40,7 @@ class MachineController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'wh_id'    => 'required|exists:warehouses,id',
             'code'     => 'required|string|max:50|unique:machines,code',
             'name'     => 'required|string|max:100',
             'type'     => 'required|string|max:50',
@@ -42,7 +48,7 @@ class MachineController extends Controller
             'status'   => 'required|in:active,maintenance,broken',
         ]);
 
-        Machine::create($request->only(['code','name','type','location','status']));
+        Machine::create($request->only(['wh_id','code','name','type','location','status']));
 
         return redirect()->route('machines.index')
                          ->with('success', 'Machine berhasil ditambahkan.');
@@ -56,6 +62,7 @@ class MachineController extends Controller
     public function update(Request $request, Machine $machine)
     {
         $request->validate([
+            'wh_id'    => 'required|exists:warehouses,id',
             'code'     => 'required|string|max:50|unique:machines,code,'.$machine->id,
             'name'     => 'required|string|max:100',
             'type'     => 'required|string|max:50',
@@ -63,7 +70,7 @@ class MachineController extends Controller
             'status'   => 'required|in:active,maintenance,broken',
         ]);
 
-        $machine->update($request->only(['code','name','type','location','status']));
+        $machine->update($request->only(['wh_id','code','name','type','location','status']));
 
         return redirect()->route('machines.index')
                          ->with('success', 'Machine berhasil diperbarui.');
