@@ -41,9 +41,9 @@
                                         <td>{{ $materials->firstItem() + $index }}</td>
                                         <td>{{ $material->m_name }}</td>
                                         <td>{{ $material->m_type }}</td>
-                                        <td>{{ $material->unit }}</td>
+                                        <td>{{ $material->unit->u_name }}</td>
                                         <td>{{ $material->unit_detail }}</td>
-                                        <td>{{ number_format($material->conversion, 2) }}</td>
+                                        <td>{{ number_format($material->conversion, 0) }}</td>
                                         <td>{{ $material->waste }}%</td>
                                         <td>
                                         {{-- Desktop view --}}
@@ -291,7 +291,7 @@
             <label class="form-label">Satuan</label>
             <select name="unit" class="form-control">
               @foreach($units as $unit)
-                <option value="{{ $unit->id }}" {{ $material->unit == $unit->id ? 'selected' : '' }}>
+                <option value="{{ $unit->id }}" {{ $material->unit_id == $unit->id ? 'selected' : '' }}>
                   {{ $unit->u_name }}
                 </option>
               @endforeach

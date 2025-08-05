@@ -40,6 +40,7 @@ class PurchasingController extends Controller
             'wh_id' => 'required|exists:warehouses,id',
             'qty' => 'required|integer|min:1',
             'price' => 'required|integer|min:0',
+            'date' => 'required|date',
         ]);
 
         Transaction::create([
@@ -47,7 +48,8 @@ class PurchasingController extends Controller
             'wh_id' => $validated['wh_id'],
             'qty' => $validated['qty'],
             'price' => $validated['price'],
-            'type' => 0,
+            'type' => 1,
+            'date' => $validated['date'],
             'user_id' => Auth::id()
         ]);
 

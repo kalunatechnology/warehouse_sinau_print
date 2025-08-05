@@ -49,7 +49,7 @@
                                         <td>{{ $trx->qty }}</td>
                                         <td>Rp {{ number_format($trx->price, 0, ',', '.') }}</td>
                                         <td>Rp {{ number_format($trx->qty * $trx->price, 0, ',', '.') }}</td>
-                                        <td>{{ $trx->created_at->format('d-m-Y') }}</td>
+                                        <td>{{ $trx->date?->format('d-m-Y') ?? '-' }}</td>
                                         <td>
                                             <form action="{{ route('purchasing.destroy', $trx->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus transaksi ini?')">
                                                 @csrf
@@ -120,6 +120,10 @@
                     <div class="mb-3">
                         <label for="price" class="form-label">Harga Satuan</label>
                         <input type="number" name="price" id="price" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="date" class="form-label">Tanggal</label>
+                        <input type="date" name="date" id="date" class="form-control" value="{{ now()->format('Y-m-d') }}" required>
                     </div>
                 </div>
                 <div class="modal-footer">
