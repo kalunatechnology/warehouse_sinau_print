@@ -35,6 +35,7 @@ class WarehouseController extends Controller
             'branch_name' => 'required|string|max:255',
             'wh_type' => 'required|in:Gudang Barang,Gudang Jasa',
             'wh_name' => 'required|string|max:255',
+            'address' => 'nullable|string|max:255',
         ]);
 
         Warehouse::create($request->all());
@@ -52,7 +53,10 @@ class WarehouseController extends Controller
             'branch_name' => 'required|string|max:255',
             'wh_type' => 'required|in:Gudang Barang,Gudang Jasa',
             'wh_name' => 'required|string|max:255',
+            'address' => 'nullable|string|max:255',
         ]);
+
+        dd($warehouse);
 
         $warehouse->update($request->all());
         return redirect()->route('warehouses.index')->with('success', 'Gudang berhasil diperbarui.');

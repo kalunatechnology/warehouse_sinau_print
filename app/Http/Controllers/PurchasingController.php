@@ -56,9 +56,23 @@ class PurchasingController extends Controller
         return redirect()->route('purchasing.index')->with('success', 'Transaksi berhasil ditambahkan.');
     }
 
-    public function destroy(Transaction $transaction)
+    public function update(Request $request, Transaction $purchasing)
     {
-        $transaction->delete();
+        $request->validate([
+            'm_id' => 'required|exists:materials,id',
+            'wh_id' => 'required|exists:warehouses,id',
+            'qty' => 'required|integer|min:1',
+            'price' => 'required|integer|min:0',
+            'date' => 'required|date',
+        ]);
+
+        $purchasing->update($request->all());
+        return redirect()->route('purchasing.index')->with('success', 'Transaksi berhasil diperbarui.');
+    }
+
+    public function destroy(Transaction $purchasing)
+    {
+        $purchasing->delete();
 
         return redirect()->route('purchasing.index')->with('success', 'Transaksi berhasil dihapus.');
     }
