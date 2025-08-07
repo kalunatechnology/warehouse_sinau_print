@@ -56,8 +56,6 @@ class WarehouseController extends Controller
             'address' => 'nullable|string|max:255',
         ]);
 
-        dd($warehouse);
-
         $warehouse->update($request->all());
         return redirect()->route('warehouses.index')->with('success', 'Gudang berhasil diperbarui.');
     }
