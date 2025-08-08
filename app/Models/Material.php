@@ -13,11 +13,16 @@ class Material extends Model
 
     protected $fillable = [
         'm_code', 'm_name', 'm_price', 'm_type', 'm_supplier',
-        'unit', 'unit_detail', 'conversion', 'm_limit', 'waste'
+        'unit_id', 'unit_detail', 'conversion', 'm_limit', 'waste'
     ];
 
     public function transaction()
     {
         return $this->hasMany(Transaction::class);
+    }
+
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class, 'unit_id', 'id');
     }
 }

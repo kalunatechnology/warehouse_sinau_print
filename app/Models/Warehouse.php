@@ -10,7 +10,7 @@ class Warehouse extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'branch_name', 'wh_type', 'wh_name'
+        'branch_name', 'wh_type', 'wh_name', 'address'
     ];
 
     public function transaction()

@@ -16,7 +16,12 @@ class Transaction extends Model
         'qty',
         'type',
         'price',
+        'date',
         'user_id'
+    ];
+
+    protected $casts = [
+        'date' => 'date',
     ];
 
     public function warehouse()

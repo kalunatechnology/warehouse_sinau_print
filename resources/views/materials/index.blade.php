@@ -41,70 +41,70 @@
                                         <td>{{ $materials->firstItem() + $index }}</td>
                                         <td>{{ $material->m_name }}</td>
                                         <td>{{ $material->m_type }}</td>
-                                        <td>{{ $material->unit }}</td>
+                                        <td>{{ $material->unit->u_name }}</td>
                                         <td>{{ $material->unit_detail }}</td>
-                                        <td>{{ number_format($material->conversion, 2) }}</td>
+                                        <td>{{ number_format($material->conversion, 0) }}</td>
                                         <td>{{ $material->waste }}%</td>
                                         <td>
-                                        {{-- Desktop view --}}
-                                        <div class="d-none d-md-flex gap-1">
-                                            <button class="btn btn-sm btn-outline-primary"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#editMaterialModal{{ $material->id }}">
-                                                <i class="bx bx-edit-alt me-1"></i> Edit
-                                            </button>
-                                            <button class="btn btn-sm btn-outline-danger"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#deleteMaterialModal{{ $material->id }}">
-                                                <i class="bx bx-trash me-1"></i> Delete
-                                            </button>
-                                            <button class="btn btn-sm btn-outline-info copy-btn"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#addMaterialModal"
-                                                data-code="{{ $material->m_code }}"
-                                                data-name="{{ $material->m_name }}"
-                                                data-price="{{ $material->m_price }}"
-                                                data-type="{{ $material->m_type }}"
-                                                data-supplier="{{ $material->m_supplier }}"
-                                                data-unit="{{ $material->unit }}"
-                                                data-unit-detail="{{ $material->unit_detail }}"
-                                                data-conversion="{{ $material->conversion }}"
-                                                data-waste="{{ $material->waste }}"
-                                                data-limit="{{ $material->m_limit }}">
-                                                <i class="bx bx-copy me-1"></i> Copy
-                                            </button>
-                                        </div>
+                                          {{-- Desktop view --}}
+                                          <div class="d-none d-md-flex gap-1">
+                                              <button class="btn btn-sm btn-outline-primary"
+                                                  data-bs-toggle="modal"
+                                                  data-bs-target="#editMaterialModal{{ $material->id }}">
+                                                  <i class="bx bx-edit-alt me-1"></i> Edit
+                                              </button>
+                                              <button class="btn btn-sm btn-outline-danger"
+                                                  data-bs-toggle="modal"
+                                                  data-bs-target="#deleteMaterialModal{{ $material->id }}">
+                                                  <i class="bx bx-trash me-1"></i> Delete
+                                              </button>
+                                              <button class="btn btn-sm btn-outline-info copy-btn"
+                                                  data-bs-toggle="modal"
+                                                  data-bs-target="#addMaterialModal"
+                                                  data-code="{{ $material->m_code }}"
+                                                  data-name="{{ $material->m_name }}"
+                                                  data-price="{{ $material->m_price }}"
+                                                  data-type="{{ $material->m_type }}"
+                                                  data-supplier="{{ $material->m_supplier }}"
+                                                  data-unit_id="{{ $material->unit_id }}"
+                                                  data-unit-detail="{{ $material->unit_detail }}"
+                                                  data-conversion="{{ $material->conversion }}"
+                                                  data-waste="{{ $material->waste }}"
+                                                  data-limit="{{ $material->m_limit }}">
+                                                  <i class="bx bx-copy me-1"></i> Copy
+                                              </button>
+                                          </div>
 
-                                        {{-- Mobile view (dropdown) --}}
-                                        <div class="dropdown d-md-none">
-                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                                <i class="bx bx-dots-vertical-rounded"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <button class="dropdown-item text-primary" data-bs-toggle="modal" data-bs-target="#editMaterialModal{{ $material->id }}">
-                                                    <i class="bx bx-edit-alt me-1"></i> Edit
-                                                </button>
-                                                <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#deleteMaterialModal{{ $material->id }}">
-                                                    <i class="bx bx-trash me-1"></i> Delete
-                                                </button>
-                                                <button class="dropdown-item text-info copy-btn"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#addMaterialModal"
-                                                    data-code="{{ $material->m_code }}"
-                                                    data-name="{{ $material->m_name }}"
-                                                    data-price="{{ $material->m_price }}"
-                                                    data-type="{{ $material->m_type }}"
-                                                    data-supplier="{{ $material->m_supplier }}"
-                                                    data-unit="{{ $material->unit }}"
-                                                    data-unit-detail="{{ $material->unit_detail }}"
-                                                    data-conversion="{{ $material->conversion }}"
-                                                    data-waste="{{ $material->waste }}"
-                                                    data-limit="{{ $material->m_limit }}">
-                                                    <i class="bx bx-copy me-1"></i> Copy
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </td>
+                                          {{-- Mobile view (dropdown) --}}
+                                          <div class="dropdown d-md-none">
+                                              <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                  <i class="bx bx-dots-vertical-rounded"></i>
+                                              </button>
+                                              <div class="dropdown-menu">
+                                                  <button class="dropdown-item text-primary" data-bs-toggle="modal" data-bs-target="#editMaterialModal{{ $material->id }}">
+                                                      <i class="bx bx-edit-alt me-1"></i> Edit
+                                                  </button>
+                                                  <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#deleteMaterialModal{{ $material->id }}">
+                                                      <i class="bx bx-trash me-1"></i> Delete
+                                                  </button>
+                                                  <button class="dropdown-item text-info copy-btn"
+                                                      data-bs-toggle="modal"
+                                                      data-bs-target="#addMaterialModal"
+                                                      data-code="{{ $material->m_code }}"
+                                                      data-name="{{ $material->m_name }}"
+                                                      data-price="{{ $material->m_price }}"
+                                                      data-type="{{ $material->m_type }}"
+                                                      data-supplier="{{ $material->m_supplier }}"
+                                                      data-unit_id="{{ $material->unit_id }}"
+                                                      data-unit-detail="{{ $material->unit_detail }}"
+                                                      data-conversion="{{ $material->conversion }}"
+                                                      data-waste="{{ $material->waste }}"
+                                                      data-limit="{{ $material->m_limit }}">
+                                                      <i class="bx bx-copy me-1"></i> Copy
+                                                  </button>
+                                              </div>
+                                          </div>
+                                        </td>
                                     </tr>
                                 @empty
                                     <tr>
@@ -154,7 +154,7 @@
           </div>
           <div class="col-md-3">
             <label class="form-label">Satuan</label>
-            <select name="unit" class="form-control" required>
+            <select name="unit_id" class="form-control" required>
               <option value="">-- Pilih Satuan --</option>
               @foreach($units as $unit)
                 <option value="{{ $unit->id }}">{{ $unit->u_name }}</option>
@@ -220,7 +220,7 @@
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Satuan</label>
-                        <select name="unit" id="unit" class="form-control" required>
+                        <select name="unit_id" id="unit_id" class="form-control" required>
                             <option value="">-- Pilih Satuan --</option>
                             @foreach($units as $unit)
                                 <option value="{{ $unit->id }}">{{ $unit->u_name }}</option>
@@ -289,9 +289,9 @@
           </div>
           <div class="col-md-3">
             <label class="form-label">Satuan</label>
-            <select name="unit" class="form-control">
+            <select name="unit_id" class="form-control">
               @foreach($units as $unit)
-                <option value="{{ $unit->id }}" {{ $material->unit == $unit->id ? 'selected' : '' }}>
+                <option value="{{ $unit->id }}" {{ $material->unit_id == $unit->id ? 'selected' : '' }}>
                   {{ $unit->u_name }}
                 </option>
               @endforeach
@@ -355,7 +355,7 @@
             document.getElementById('m_price').value = this.dataset.price;
             document.getElementById('m_type').value = this.dataset.type;
             document.getElementById('m_supplier').value = this.dataset.supplier;
-            document.getElementById('unit').value = this.dataset.unit;
+            document.getElementById('unit_id').value = this.dataset.unit_id;
             document.getElementById('unit_detail').value = this.dataset['unitDetail'];
             document.getElementById('conversion').value = this.dataset.conversion;
             document.getElementById('waste').value = this.dataset.waste;

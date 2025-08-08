@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('m_price');
             $table->string('m_type');
             $table->string('m_supplier');
-            $table->unsignedBigInteger('unit');
+            $table->unsignedBigInteger('unit_id');
             $table->string('unit_detail');
             $table->double('conversion', 10, 2);
             $table->integer('m_limit');

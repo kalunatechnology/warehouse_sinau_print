@@ -33,7 +33,8 @@
                                     <th>No</th>
                                     <th>Cabang</th>
                                     <th>Jenis Gudang</th>
-                                    <th>Nama Gudang</th>
+                                    <th>Nama Gudang</th>  
+                                    <th>Alamat</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -44,6 +45,7 @@
                                         <td>{{ $warehouse->branch_name }}</td>
                                         <td>{{ $warehouse->wh_type }}</td>
                                         <td>{{ $warehouse->wh_name }}</td>
+                                        <td>{{ $warehouse->address ?? '-' }}</td>
                                         <td>
                                             {{-- Desktop view --}}
                                             <div class="d-none d-md-flex gap-1">
@@ -131,6 +133,10 @@
             <label for="wh_name" class="form-label">Nama Gudang</label>
             <input type="text" name="wh_name" class="form-control" required>
           </div>
+          <div class="mb-3">
+              <label for="address" class="form-label">Alamat</label>
+              <textarea name="address" class="form-control" rows="2"></textarea>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
@@ -169,6 +175,10 @@
           <div class="mb-3">
             <label for="wh_name{{ $warehouse->id }}" class="form-label">Nama Gudang</label>
             <input type="text" name="wh_name" class="form-control" value="{{ $warehouse->wh_name }}" required>
+          </div>
+          <div class="mb-3">
+              <label for="address{{ $warehouse->id }}" class="form-label">Alamat</label>
+              <textarea name="address" class="form-control" rows="2">{{ $warehouse->address }}</textarea>
           </div>
         </div>
         <div class="modal-footer">
