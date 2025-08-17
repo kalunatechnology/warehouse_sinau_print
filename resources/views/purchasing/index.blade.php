@@ -152,7 +152,7 @@
                         <select name="wh_id" id="wh_id" class="form-select" required>
                             <option value="">-- Pilih Gudang --</option>
                             @foreach($warehouses as $warehouse)
-                                <option value="{{ $warehouse->id }}">{{ $warehouse->branch_name }}</option>
+                                <option value="{{ $warehouse->id }}">{{ $warehouse->wh_name . ' ' . '('.$warehouse->branch_name.')' }}</option>
                             @endforeach
                         </select>
                     </div>

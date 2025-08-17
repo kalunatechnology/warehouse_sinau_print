@@ -35,7 +35,7 @@ class MachineCounterController extends Controller
     {
         $request->validate([
             'machine_id'  => 'required|exists:machines,id',
-            'counter'     => 'required|integer|min:0',
+            'counter'     => 'required|min:0',
             'recorded_at' => 'required|date',
         ]);
 
@@ -49,7 +49,7 @@ class MachineCounterController extends Controller
     {
         $request->validate([
             'machine_id'  => 'required|exists:machines,id',
-            'counter'     => 'required|integer|min:0',
+            'counter'     => 'required|min:0',
             'recorded_at' => 'required|date',
         ]);
 

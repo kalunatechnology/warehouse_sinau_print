@@ -38,7 +38,7 @@
                   <th>Kode</th>
                   <th>Nama</th>
                   <th>Tipe</th>
-                  <th>Lokasi</th>
+                  <th>Satuan Counter</th>
                   <th>Status</th>
                   <th>Aksi</th>
                 </tr>

@@ -44,8 +44,8 @@
             @forelse($logs as $i => $log)
               <tr @if($log->trashed()) class="table-secondary" @endif>
                 <td>{{ $logs->firstItem()+$i }}</td>
-                <td>[{{ $log->machine->code }}] {{ $log->machine->name }}</td>
-                <td>{{ $log->counter_before }} → {{ $log->counter_after }}</td>
+                <td>[{{ $log->machine->code }}] {{ $log->machine->name }} </td>
+                <td>{{ $log->counter_before }} → {{ $log->counter_after }} {{ $log->machine->location }}</td>
                 <td>{{ $log->user->name }}</td>
                 <td>{{ $log->description }}</td>
                 <td>{{ $log->created_at->format('Y-m-d H:i') }}</td>

@@ -20,14 +20,14 @@
 <div class="mb-3 row">
   <div class="col">
     <label for="counter_before" class="form-label">Counter Sebelumnya</label>
-    <input type="number" name="counter_before" id="counter_before" min="0"
+    <input type="text" name="counter_before" id="counter_before" min="0"
            class="form-control @error('counter_before') is-invalid @enderror"
            value="{{ old('counter_before', $log->counter_before ?? '') }}" required>
     @error('counter_before') <div class="invalid-feedback">{{ $message }}</div> @enderror
   </div>
   <div class="col">
     <label for="counter_after" class="form-label">Counter Baru</label>
-    <input type="number" name="counter_after" id="counter_after" min="0"
+    <input type="text" name="counter_after" id="counter_after" min="0"
            class="form-control @error('counter_after') is-invalid @enderror"
            value="{{ old('counter_after', $log->counter_after ?? '') }}" required>
     @error('counter_after') <div class="invalid-feedback">{{ $message }}</div> @enderror

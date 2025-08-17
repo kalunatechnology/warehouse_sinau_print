@@ -38,8 +38,8 @@ class MachineCounterLogController extends Controller
     {
         $request->validate([
             'machine_id'     => 'required|exists:machines,id',
-            'counter_before' => 'required|integer|min:0',
-            'counter_after'  => 'required|integer|min:0',
+            'counter_before' => 'required|min:0',
+            'counter_after'  => 'required|min:0',
             'description'    => 'nullable|string|max:255',
         ]);
 

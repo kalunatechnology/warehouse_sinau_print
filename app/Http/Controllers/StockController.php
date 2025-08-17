@@ -21,6 +21,7 @@ class StockController extends Controller
         $stocksQuery = DB::table('transactions')
             ->join('warehouses', 'transactions.wh_id', '=', 'warehouses.id')
             ->join('materials', 'transactions.m_id', '=', 'materials.id')
+            ->join('units', 'materials.unit_id', '=', 'units.id')
             ->select(
                 'warehouses.id as warehouse_id',
                 'warehouses.wh_type',
@@ -28,6 +29,9 @@ class StockController extends Controller
                 'materials.id as material_id',
                 'materials.m_name',
                 'materials.waste',
+                'materials.conversion',
+                'materials.unit_detail',
+                'units.u_name',
                 DB::raw('SUM(CASE WHEN transactions.type = 1 THEN transactions.qty ELSE 0 END) as stock_in'),
                 DB::raw('SUM(CASE WHEN transactions.type = 0 THEN transactions.qty ELSE 0 END) as stock_out'),
                 DB::raw('SUM(CASE WHEN transactions.type = 1 THEN transactions.qty ELSE 0 END) - SUM(CASE WHEN transactions.type = 0 THEN transactions.qty ELSE 0 END) as stock')

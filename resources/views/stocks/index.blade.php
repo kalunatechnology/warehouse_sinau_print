@@ -27,7 +27,9 @@
                                     <th>Nama Gudang</th>
                                     <th>Nama Bahan</th>
                                     <th>Stok</th>
+                                    <th>Stok Detail</th>
                                     <th>Stok Waste</th>
+                                    <th>Stok Waste Detail</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -37,8 +39,10 @@
                                         <td>{{ $stock->wh_type }}</td>
                                         <td>{{ $stock->wh_name }}</td>
                                         <td>{{ $stock->m_name }}</td>
-                                        <td>{{ number_format($stock->stock) }}</td>
-                                        <td>{{ number_format($stock->stock * ($stock->waste / 100)) }}</td>
+                                        <td>{{ number_format($stock->stock) }} {{ $stock->u_name }}</td>
+                                        <td>{{ number_format($stock->stock * $stock->conversion) }} {{ $stock->unit_detail }}</td>
+                                        <td>{{ $stock->stock * ($stock->waste / 100) }} {{ $stock->u_name }}</td>
+                                        <td>{{ $stock->stock * ($stock->waste / 100) * $stock->conversion }} {{ $stock->unit_detail }}</td>
                                     </tr>
                                 @empty
                                     <tr>

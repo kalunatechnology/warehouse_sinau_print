@@ -25,7 +25,7 @@
 
 <div class="mb-3">
   <label for="counter" class="form-label">Nilai Counter</label>
-  <input type="number" name="counter" id="counter" min="0"
+  <input type="text" name="counter" id="counter" min="0"
          class="form-control @error('counter') is-invalid @enderror"
          value="{{ old('counter', $mc->counter ?? '') }}" required>
   @error('counter')

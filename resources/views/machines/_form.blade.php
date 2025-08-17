@@ -42,7 +42,7 @@
 </div>
 
 <div class="mb-3">
-  <label for="location" class="form-label">Lokasi</label>
+  <label for="location" class="form-label">Satuan Counter</label>
   <input type="text" name="location" id="location"
          class="form-control @error('location') is-invalid @enderror"
          value="{{ old('location', $machine->location ?? '') }}">

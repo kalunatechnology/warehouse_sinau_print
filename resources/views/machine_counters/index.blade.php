@@ -42,7 +42,7 @@
               <tr @if($c->trashed()) class="table-secondary" @endif>
                 <td>{{ $counters->firstItem() + $i }}</td>
                 <td>[{{ $c->machine->code }}] {{ $c->machine->name }}</td>
-                <td>{{ $c->counter }}</td>
+                <td>{{ $c->counter  }} {{ $c->machine->location }}</td>
                 <td>{{ $c->recorded_at->format('Y-m-d H:i') }}</td>
                 <td>
                   <div class="btn-group btn-group-sm" role="group">
