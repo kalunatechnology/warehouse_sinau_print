@@ -25,7 +25,7 @@ class UnitController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'u_name' => 'required|unique:units,u_name'
+            'u_name' => 'required'
         ]);
 
         Unit::create($request->only('u_name'));
@@ -41,7 +41,7 @@ class UnitController extends Controller
     public function update(Request $request, Unit $unit)
     {
         $request->validate([
-            'u_name' => 'required|unique:units,u_name,' . $unit->id
+            'u_name' => 'required'
         ]);
 
         $unit->update($request->only('u_name'));
