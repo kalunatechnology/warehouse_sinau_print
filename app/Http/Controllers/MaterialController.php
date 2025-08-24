@@ -12,12 +12,14 @@ class MaterialController extends Controller
     {
         $search = $request->input('search');
 
-        $materials = Material::when($search, function ($query, $search) {
-                return $query->where('m_name', 'like', "%{$search}%")
-                             ->orWhere('m_type', 'like', "%{$search}%");
-            })
-            ->orderBy('id', 'desc')
-            ->paginate(10);
+        // $materials = Material::when($search, function ($query, $search) {
+        //         return $query->where('m_name', 'like', "%{$search}%")
+        //                      ->orWhere('m_type', 'like', "%{$search}%");
+        //     })
+        //     ->orderBy('id', 'desc')
+        //     ->paginate(10);
+
+        $materials = Material::latest()->get();
 
         $units = Unit::orderBy('u_name')->get();
 
@@ -28,8 +30,7 @@ class MaterialController extends Controller
     {
         $validated = $request->validate([
             'm_code' => 'required|unique:materials,m_code',
-            'm_name' => 'required|unique:materials,m_name',
-            'm_price' => 'required|numeric|min:0',
+            'm_name' => 'required',
             'm_type' => 'nullable|string',
             'm_supplier' => 'nullable|string',
             'unit_id' => 'required|exists:units,id',
@@ -50,8 +51,7 @@ class MaterialController extends Controller
     {
         $validated = $request->validate([
             'm_code' => 'required|unique:materials,m_code,' . $material->id,
-            'm_name' => 'required|unique:materials,m_name,' . $material->id,
-            'm_price' => 'required|numeric|min:0',
+            'm_name' => 'required',
             'm_type' => 'nullable|string',
             'm_supplier' => 'nullable|string',
             'unit_id' => 'required|exists:units,id',
