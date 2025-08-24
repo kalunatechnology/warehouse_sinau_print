@@ -29,7 +29,7 @@ class MaterialController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'm_code' => 'required|unique:materials,m_code',
+            'm_code' => 'required',
             'm_name' => 'required',
             'm_type' => 'nullable|string',
             'm_supplier' => 'nullable|string',
@@ -50,7 +50,7 @@ class MaterialController extends Controller
     public function update(Request $request, Material $material)
     {
         $validated = $request->validate([
-            'm_code' => 'required|unique:materials,m_code,' . $material->id,
+            'm_code' => 'required',
             'm_name' => 'required',
             'm_type' => 'nullable|string',
             'm_supplier' => 'nullable|string',

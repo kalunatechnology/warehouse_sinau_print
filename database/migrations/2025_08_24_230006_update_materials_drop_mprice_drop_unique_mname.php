@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::table('materials', function (Blueprint $table) {
             $table->dropColumn('m_price');
             $table->dropUnique('m_name');
+            $table->dropUnique('m_code');
         });
     }
 
@@ -18,6 +19,7 @@ return new class extends Migration
     {
         Schema::table('materials', function (Blueprint $table) {
             $table->integer('m_price');
+            $table->unique('m_code');
             $table->unique('m_name');
         });
     }
