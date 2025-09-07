@@ -224,7 +224,7 @@
                     <span class="fw-semibold d-block mb-1">Total Transaksi</span>
                     <h3 class="card-title mb-2">{{ number_format($totalTransactions) }}</h3>
                     <small class="text-success fw-semibold">
-                        <a href="{{ route('purchasing.index') }}" class="text-decoration-none">Lihat Detail</a>
+                        <a href="{{ route('stocks.transaction') }}" class="text-decoration-none">Lihat Detail</a>
                     </small>
                 </div>
             </div>
@@ -351,93 +351,6 @@
                                 @empty
                                 <tr>
                                     <td colspan="4" class="text-center text-success">Semua stok aman!</td>
-                                </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xl-6 col-lg-6 mb-4">
-            <div class="card h-100">
-                <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="card-title m-0 me-2">Bahan Populer</h5>
-                    <small class="text-muted">30 Hari Terakhir</small>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-sm">
-                            <thead>
-                                <tr>
-                                    <th>Nama Bahan</th>
-                                    <th>Total Qty</th>
-                                    <th>Transaksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse($topMaterials as $material)
-                                <tr>
-                                    <td>{{ $material->m_name }}</td>
-                                    <td>{{ number_format($material->total_qty) }}</td>
-                                    <td>{{ number_format($material->transaction_count) }}</td>
-                                </tr>
-                                @empty
-                                <tr>
-                                    <td colspan="3" class="text-center">Belum ada data</td>
-                                </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-6 col-lg-6 mb-4">
-            <div class="card h-100">
-                <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="card-title m-0 me-2">Performa Mesin</h5>
-                    <small class="text-muted">Counter Terbaru</small>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-sm">
-                            <thead>
-                                <tr>
-                                    <th>Mesin</th>
-                                    <th>Counter</th>
-                                    <th>Status</th>
-                                    <th>Update</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse($machinePerformance as $machine)
-                                <tr>
-                                    <td>
-                                        <div class="d-flex flex-column">
-                                            <span class="fw-semibold">{{ $machine->name }}</span>
-                                            <small class="text-muted">{{ $machine->code }}</small>
-                                        </div>
-                                    </td>
-                                    <td>{{ number_format($machine->latest_counter) }}</td>
-                                    <td>
-                                        @if($machine->status == 'active')
-                                            <span class="badge bg-label-success">Aktif</span>
-                                        @elseif($machine->status == 'maintenance')
-                                            <span class="badge bg-label-danger">Maintenance</span>
-                                        @else
-                                            <span class="badge bg-label-danger">Rusak</span>
-                                        @endif
-                                    </td>
-                                    <td>{{ \Carbon\Carbon::parse($machine->last_recorded)->format('d/m/Y') }}</td>
-                                </tr>
-                                @empty
-                                <tr>
-                                    <td colspan="4" class="text-center">Belum ada data</td>
                                 </tr>
                                 @endforelse
                             </tbody>

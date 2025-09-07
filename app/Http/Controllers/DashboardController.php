@@ -46,7 +46,7 @@ class DashboardController extends Controller
             ->whereNull('warehouses.deleted_at')
             ->where('materials.m_limit', '>', 0)
             ->groupBy('materials.id', 'materials.m_name', 'materials.m_limit', 'warehouses.id', 'warehouses.wh_name')
-            ->havingRaw('current_stock < materials.m_limit AND current_stock >= 0')
+            ->havingRaw('current_stock <= materials.m_limit AND current_stock >= 0')
             ->orderBy('current_stock', 'asc')
             ->take(5)
             ->get();
@@ -83,21 +83,6 @@ class DashboardController extends Controller
             }
         }
 
-        $topMaterials = DB::table('transactions')
-            ->join('materials', 'transactions.m_id', '=', 'materials.id')
-            ->select(
-                'materials.m_name',
-                DB::raw('SUM(transactions.qty) as total_qty'),
-                DB::raw('COUNT(transactions.id) as transaction_count')
-            )
-            ->where('transactions.created_at', '>=', Carbon::now()->subDays(30))
-            ->whereNull('transactions.deleted_at')
-            ->whereNull('materials.deleted_at')
-            ->groupBy('materials.id', 'materials.m_name')
-            ->orderBy('total_qty', 'desc')
-            ->take(5)
-            ->get();
-
         $warehouseStocks = DB::table('transactions')
             ->join('warehouses', 'transactions.wh_id', '=', 'warehouses.id')
             ->select(
@@ -113,22 +98,6 @@ class DashboardController extends Controller
             ->orderBy('current_stock', 'desc')
             ->get();
 
-        $machinePerformance = DB::table('machine_counters')
-            ->join('machines', 'machine_counters.machine_id', '=', 'machines.id')
-            ->select(
-                'machines.name',
-                'machines.code',
-                'machines.status',
-                DB::raw('MAX(machine_counters.counter) as latest_counter'),
-                DB::raw('MAX(machine_counters.recorded_at) as last_recorded')
-            )
-            ->whereNull('machine_counters.deleted_at')
-            ->whereNull('machines.deleted_at')
-            ->groupBy('machines.id', 'machines.name', 'machines.code', 'machines.status')
-            ->orderBy('last_recorded', 'desc')
-            ->take(5)
-            ->get();
-
         return view('dashboard', compact(
             'totalWarehouses',
             'totalMaterials', 
@@ -138,9 +107,7 @@ class DashboardController extends Controller
             'lowStockMaterials',
             'machineStatus',
             'monthlyTransactions',
-            'topMaterials',
-            'warehouseStocks',
-            'machinePerformance'
+            'warehouseStocks'
         ));
     }
 }
