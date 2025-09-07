@@ -10,15 +10,15 @@
         <div class="col-12">
             <div class="card h-100">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Belanja Bahan</h5>
-                    <button
+                    <h5 class="mb-0">Transaksi Stok</h5>
+                    {{-- <button
                         type="button"
                         class="btn btn-sm btn-primary"
                         data-bs-toggle="modal"
                         data-bs-target="#createTransactionModal"
                     >
                         + Tambah Transaksi
-                    </button>
+                    </button> --}}
                 </div>
                 <div class="card-body d-flex flex-column">
                     {{-- <form method="GET" action="{{ route('purchasing.index') }}" class="mb-3">
@@ -35,12 +35,12 @@
                             <thead class="table-light">
                                 <tr>
                                     <th>No</th>
+                                    <th>Tanggal</th>
+                                    <th>SPK</th>
                                     <th>Nama Bahan</th>
                                     <th>Gudang</th>
                                     <th>Jumlah</th>
-                                    <th>Harga Satuan</th>
-                                    <th>Total</th>
-                                    <th>Tanggal</th>
+                                    <th>Keterangan</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -48,12 +48,16 @@
                                 @forelse($transactions as $index => $trx)
                                     <tr>
                                         <td>{{ $index+1 }}</td>
+                                        <td>{{ $trx->date?->format('d-m-Y') ?? '-' }}</td>
+                                        <td>{{ $trx->spk?? '-' }}</td>
                                         <td>{{ $trx->material->m_name ?? '-' }}</td>
                                         <td>{{ $trx->warehouse->wh_name ?? '-' }}</td>
-                                        <td>{{ $trx->qty }}</td>
-                                        <td>Rp {{ number_format($trx->price, 0, ',', '.') }}</td>
-                                        <td>Rp {{ number_format($trx->qty * $trx->price, 0, ',', '.') }}</td>
-                                        <td>{{ $trx->date?->format('d-m-Y') ?? '-' }}</td>
+                                        <td>{{ $trx->qty . ' ' . $trx->material->unit->u_name }}</td>
+                                        @if ($trx->type == 0)
+                                            <td><button type="button" class="btn btn-sm btn-outline-danger">OUT</button></td>
+                                        @elseif ($trx->type == 1)
+                                            <td><button type="button" class="btn btn-sm btn-outline-success">IN</button></td>
+                                        @endif
                                         <td>
                                           {{-- Desktop view --}}
                                           <div class="d-none d-md-flex gap-1">
@@ -66,16 +70,6 @@
                                                   data-bs-toggle="modal"
                                                   data-bs-target="#deletePurchasingModal{{ $trx->id }}">
                                                   <i class="bx bx-trash me-1"></i> Delete
-                                              </button>
-                                              <button class="btn btn-sm btn-outline-info copy-btn"
-                                                  data-bs-toggle="modal"
-                                                  data-bs-target="#addPurchasingModal"
-                                                  data-m_id ="{{ $trx->m_id }}"
-                                                  data-wh_id="{{ $trx->wh_id }}"
-                                                  data-qty="{{ $trx->qty }}"
-                                                  data-price="{{ $trx->price }}"
-                                                  data-date="{{ $trx->date?->format('Y-m-d') }}">
-                                                  <i class="bx bx-copy me-1"></i> Copy
                                               </button>
                                           </div>
 
@@ -171,6 +165,14 @@
                     <div class="mb-3">
                         <label for="date" class="form-label">Tanggal</label>
                         <input type="date" name="date" id="date" class="form-control" value="{{ now()->format('Y-m-d') }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="type" class="form-label">Tipe</label>
+                        <select name="type" id="type" class="form-select" required>
+                            <option value="">-- Pilih Tipe --</option>
+                            <option value="0">Barang Keluar</option>
+                            <option value="0">Barang Masuk</option>
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -273,13 +275,25 @@
                         <label for="qty" class="form-label">Jumlah</label>
                         <input type="number" name="qty" class="form-control" value="{{ $trx->qty }}" required>
                     </div>
-                    <div class="mb-3">
-                        <label for="price" class="form-label">Harga Satuan</label>
-                        <input type="number" name="price" class="form-control" value="{{ $trx->price }}" required>
-                    </div>
+                    @if ($trx->type == 1)
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Harga Satuan</label>
+                            <input type="number" name="price" class="form-control" value="{{ $trx->price }}" required>
+                        </div>
+                    @endif
                     <div class="mb-3">
                         <label for="date" class="form-label">Tanggal</label>
                         <input type="date" name="date" class="form-control" value="{{ $trx->date?->format('Y-m-d') }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="type" class="form-label">Tipe</label>
+                        <select name="type" id="type" class="form-select" readonly>
+                            @if ($trx->type == 0)
+                                <option value="0" {{ $trx->type == 0 ? 'selected' : '' }}>Barang Keluar</option>
+                            @elseif($trx->type == 1)
+                                <option value="1" {{ $trx->type == 1 ? 'selected' : '' }}>Barang Masuk</option>
+                            @endif
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">

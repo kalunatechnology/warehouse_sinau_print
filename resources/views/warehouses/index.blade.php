@@ -42,13 +42,14 @@
                                 <tbody>
                                     @forelse($warehouses as $index => $warehouse)
                                         <tr>
-                                            <td>{{ $warehouses->firstItem() + $index }}</td>
+                                            <td>{{ $index+1 }}</td>
                                             <td>{{ $warehouse->branch_name }}</td>
                                             <td>{{ $warehouse->wh_type }}</td>
                                             <td>{{ $warehouse->wh_name }}</td>
                                             <td>{{ $warehouse->address ?? '-' }}</td>
                                             <td>
                                                 {{-- Desktop view --}}
+                                                
                                                 <div class="d-none d-md-flex gap-1">
                                                     <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
                                                         data-bs-target="#editWarehouseModal{{ $warehouse->id }}">

@@ -28,10 +28,12 @@ Route::middleware('auth')->group(function () {
     Route::get('stocks', [\App\Http\Controllers\StockController::class, 'index'])->name('stocks.index');
     Route::get('stocks/minimum', [\App\Http\Controllers\StockController::class, 'minimumStock'])->name('stocks.minimum');
     Route::resource('purchasing', \App\Http\Controllers\PurchasingController::class);
+    Route::get('transactions', [\App\Http\Controllers\PurchasingController::class, 'transactionStock'])->name('stocks.transaction');
     Route::resource('machines', MachineController::class);
     Route::post('machines/{id}/restore', [MachineController::class, 'restore'])->name('machines.restore');
     Route::resource('machine-counters', MachineCounterController::class)->except(['create','edit','show']);
     Route::post('machine-counters/{id}/restore', [MachineCounterController::class, 'restore'])->name('machine-counters.restore');
     Route::resource('machine-counter-logs', MachineCounterLogController::class)->only(['index','store','update','destroy']);
     Route::post('machine-counter-logs/{id}/restore',[MachineCounterLogController::class,'restore'])->name('machine-counter-logs.restore');
+    Route::post('/{id}/updateTransaction', [App\Http\Controllers\PurchasingController::class, 'updateTransactions'])->name('transactionsUpdate');
 });

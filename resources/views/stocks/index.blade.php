@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('style')
+    <link rel="stylesheet" href="{{ asset('modules/datatables/datatables.min.css') }}">
+@endsection
+
+
 @section('content')
 <div class="container-fluid flex-grow-1 container-p-y" style="min-height: calc(100vh - 120px);">
     <div class="row">
@@ -9,7 +14,7 @@
                     <h5 class="mb-0">Daftar Stok</h5>
                 </div>
                 <div class="card-body d-flex flex-column">
-                    <form method="GET" action="{{ route('stocks.index') }}" class="mb-3">
+                    {{-- <form method="GET" action="{{ route('stocks.index') }}" class="mb-3">
                         <div class="input-group">
                             <input type="text" name="search" class="form-control" placeholder="Masukkan kata kunci..." value="{{ request('search') }}">
                             <button type="submit" class="btn btn-outline-secondary">Cari</button>
@@ -17,9 +22,9 @@
                                 <a href="{{ route('stocks.index') }}" class="btn btn-outline-danger">Reset</a>
                             @endif
                         </div>
-                    </form>
-                    <div class="table-responsive flex-grow-1">
-                        <table class="table table-bordered table-hover mb-0">
+                    </form> --}}
+                    <div class="table-responsive mt-3">
+                        <table id="datatable" class="table">
                             <thead class="table-light">
                                 <tr>
                                     <th>No</th>
@@ -67,4 +72,14 @@
 </script>
 @endif
 
+@endsection
+
+@section('script')
+    <script src="{{ asset('modules/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/modules-datatables.js') }}"></script>
+    <script>
+        $(function() {
+            $('#datatable').DataTable();
+        });
+    </script>
 @endsection

@@ -12,7 +12,7 @@ class UnitController extends Controller
         $search = $request->input('search');
         $units = Unit::when($search, fn($q) => $q->where('u_name', 'like', "%$search%"))
                      ->orderBy('id', 'desc')
-                     ->paginate(10);
+                     ->get();
 
         return view('units.index', compact('units', 'search'));
     }

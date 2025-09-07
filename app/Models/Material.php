@@ -13,7 +13,7 @@ class Material extends Model
 
     protected $fillable = [
         'm_code', 'm_name', 'm_price', 'm_type', 'm_supplier',
-        'unit_id', 'unit_detail', 'conversion', 'm_limit', 'waste'
+        'unit_id', 'unit_detail', 'conversion', 'm_limit', 'waste', 'stock'
     ];
 
     public function transaction()

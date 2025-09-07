@@ -94,7 +94,7 @@
                     </li>
 
                     <!-- Sistem Gudang -->
-                    <li class="menu-item {{ request()->is('warehouses*') || request()->is('materials*') || request()->is('units*') || request()->is('purchasing*') ? 'open' : '' }}">
+                    <li class="menu-item {{ request()->is('warehouses*') || request()->is('materials*') || request()->is('stocks*') || request()->is('transactions*') || request()->is('units*') || request()->is('purchasing*') ? 'open' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bx-package"></i>
                         <div data-i18n="Sistem Gudang">Sistem Gudang</div>
@@ -150,8 +150,8 @@
                         </li>
 
                         <!-- Transaksi Stok -->
-                        <li class="menu-item">
-                        <a href="#" class="menu-link">
+                        <li class="menu-item {{ request()->is('transactions*') ? 'active' : '' }}">
+                        <a href="{{ route('stocks.transaction') }}" class="menu-link {{ request()->is('transactions*') ? 'active' : '' }}">
                             <div data-i18n="Transaksi Stok">Transaksi Stok</div>
                         </a>
                         </li>

@@ -18,8 +18,7 @@ class WarehouseController extends Controller
                     ->orWhere('wh_type', 'like', "%{$search}%");
             })
             ->latest()
-            ->paginate(10)
-            ->withQueryString();
+            ->get();
 
         return view('warehouses.index', compact('warehouses', 'search'));
     }
